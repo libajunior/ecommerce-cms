@@ -6,6 +6,8 @@ import { BrandLayout } from "./cases/brands/components/brand-layout"
 import { BrandForm } from "./cases/brands/components/brand-form"
 import { ProductLayout } from "./cases/products/components/prodcuct-layout"
 import { ProductForm } from "./cases/products/components/product-form"
+import { SidebarProvider } from "./components/ui/sidebar"
+import { AppSidebar } from "./components/layout/app-sidebar"
 
 
 function App() {
@@ -13,14 +15,15 @@ function App() {
   return (
     <div className="wrapper">
       
-
-      <main>
-        <Routes>
-          
-          <Route path="/categories" element={ <CategoryLayout />}>
-            <Route path="new" element={ <CategoryForm />} />
-            <Route path=":id" element={ <CategoryForm />} />
-          </Route>
+      <SidebarProvider>
+        <AppSidebar />
+        <main className="w-full">
+          <Routes>
+            
+            <Route path="/categories" element={ <CategoryLayout />}>
+              <Route path="new" element={ <CategoryForm />} />
+              <Route path=":id" element={ <CategoryForm />} />
+            </Route>
 
             <Route path="/brands" element={ <BrandLayout /> }>
               <Route path="new" element={<BrandForm />} />
@@ -31,10 +34,10 @@ function App() {
               <Route path="new" element={<ProductForm />} />
               <Route path=":id" element={<ProductForm />} />
             </Route>
-          
-        </Routes>
-      </main>
-
+            
+          </Routes>
+        </main>
+      </SidebarProvider>
       <ToastContainer />
 
     </div>
